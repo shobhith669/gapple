@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gapple</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset-style.css">
+    <link rel="icon" href="content/logo/gapple-logo.png" type="logo">
+</head>
+<body>
+    <!-- Navbar -->
+
+    <nav class="flex bg-dark">
+        <img src="content/logo/gapple-logo.png">
+        <ul class="flex bg-dark">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="wrapper-1">
+        <div class="contact-section">
+            <h1>Contact Us</h1>
+            <div class="border"></div>
+            <form action="https://formspree.io/f/xayagevg" class="contact-form" id="contact-form" method="post">
+                <input type="text" class="contact-form-text" placeholder="Your Name" name="Namw" required>
+                <input type="email" class="contact-form-text" placeholder="Your Email" name="email" required>
+                <input type="text" class="contact-form-text" placeholder="Your Phone" name="phone">
+                <textarea class="contact-form-text" placeholder="Your Message" name="message" required></textarea>
+               <!-- <input type="submit" class="contact-form-btn" value="Send"> -->
+               <button type="submit">Submit</button>
+               <p id="status" class="status"></p>
+               <p class="status-right">Thanks for your submission!</p>
+            </form>
+        </div>
+        </div>
+    </main>
+    <script src="contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+/* Custom Properties */
+
+:root {
+    /* colors */
+    --clr-primary: #1D1D1f;
+    --clr-dark: #1D1D1f;
+    --clr-accent: #66FF00;
+    --clr-light: #FAF9F6;
+
+    /* font-families */
+    --ff-serif: "Bellefair", serif;
+    --ff-sans-cond: "Barlow Condensed", sans-serif;
+    --ff-sans-normal: "Barlow", sans-serif;
+}
+
+/* set up the body */
+body {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    font-family: var(--ff-sans-normal);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+
+a {
+    text-decoration: none;
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.sr-only {
+  position: absolute; 
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px; 
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/* colors */
+
+.bg-dark { background: hsl( var(--clr-dark) );}
+.bg-primary { background: hsl( var(--clr-primary) );}
+.bg-mag { background: hsl( var(--clr-mag) );}
+.bg-pur { background: hsl( var(--clr-pur) );}
+.bg-light { background: var(--clr-light) ;}
+
+.text-dark { color: var(--clr-dark);}
+.text-primary { color: var(--clr-primary);}
+.text-light { color: var(--clr-light);}
+
+/* Navbar */
+
+nav {
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--clr-light) !important;
+    text-transform: uppercase;
+}
+
+nav img {
+    height: 60px;
+    margin-left: 50px;
+}
+
+nav ul {
+    --gap: 3rem;
+    margin-right: 50px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--clr-dark);
+    padding: 10px 20px;
+    transition: all 500ms ease;
+}
+
+nav ul li a:hover {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+}
+
+/* Main */
+
+.carousel {
+    max-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    line-height: 1.6;
+    position: relative;
+    top: 110px;
+}
+
+/* Iphone 13 */
+
+
+.iphone-13 {
+    color: var(--clr-light);
+    padding: 10rem 0 0;
+    max-width: 34ch;
+    border-radius: .5rem;
+    overflow: hidden;
+    transition: all 500ms ease;
+    background-image: url(content/iphones/iphone-13.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.iphone-13:hover,
+.iphone-13:focus-within {
+    transform: scale(1.05);
+}
+
+.iphone-13-content {
+    --padding: 1.5rem;
+    padding: var(--padding);
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(20 0% 0% / .3) 10%,
+        hsl(0 0% 0% / 1)
+    );
+    transform: translateY(65%);
+    transition: all 500ms ease;
+}
+
+.iphone-13:hover .iphone-13-content,
+.iphone-13:focus-within .iphone-13-content {
+    transform: translateY(0);
+    transition-delay: 500ms;
+}
+
+.iphone-13-content > *:not(.iphone-13-title) {
+    opacity: 0;
+    transition: all 500ms linear;
+}
+
+.iphone-13:hover .iphone-13-content > * {
+    opacity: 1;
+    transition-delay: 1000ms;
+}
+
+.iphone-13-title {
+    position: relative;
+    width: max-content;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.iphone-13-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding) * -1);
+    bottom: -2px;
+    width: calc(100% + var(--padding));
+    background: var(--clr-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 500ms ease;
+}
+
+.iphone-13:hover .iphone-13-title::after {
+    transform: scaleX(1);
+}
+
+.iphone-13-body {
+    margin: 10px 0;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px 0;
+    color: var(--clr-dark);
+    background: var(--clr-accent);
+    padding: 0.5em 1.25em;
+    border-radius: .25em;
+    transition: all 10ms ease;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--clr-light);
+}
+
+/* carousel */
+
+.slide {
+    display: none;
+}
+
+.slide[data-active] {
+    display: block;
+}
+
+.carousel-button {
+    position: fixed;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    top: 50%;
+    z-index: 100;
+    transform: translateY(50%);
+    color: rgba(255, 255, 255, .9);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.carousel-button:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.carousel-button.prev {
+    left: 5rem;
+}
+
+.carousel-button.next {
+    right: 5rem;
+}
+
+/* iPhone-12 */
+
+
+.iphone-12 {
+    color: var(--clr-light);
+    padding: 10rem 0 0;
+    max-width: 34ch;
+    border-radius: .5rem;
+    overflow: hidden;
+    transition: all 500ms ease;
+    background-image: url(content/iphones/iphone\ 12.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.iphone-12:hover,
+.iphone-12:focus-within {
+    transform: scale(1.05);
+}
+
+.iphone-12-content {
+    --padding: 1.5rem;
+    padding: var(--padding);
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(20 0% 0% / .3) 10%,
+        hsl(0 0% 0% / 1)
+    );
+    transform: translateY(65%);
+    transition: all 500ms ease;
+}
+
+.iphone-12:hover .iphone-12-content,
+.iphone-12:focus-within .iphone-12-content {
+    transform: translateY(0);
+    transition-delay: 500ms;
+}
+
+.iphone-12-content > *:not(.iphone-12-title) {
+    opacity: 0;
+    transition: all 500ms linear;
+}
+
+.iphone-12:hover .iphone-12-content > * {
+    opacity: 1;
+    transition-delay: 1000ms;
+}
+
+.iphone-12-title {
+    position: relative;
+    width: max-content;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.iphone-12-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding) * -1);
+    bottom: -2px;
+    width: calc(100% + var(--padding));
+    background: var(--clr-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 500ms ease;
+}
+
+.iphone-12:hover .iphone-12-title::after {
+    transform: scaleX(1);
+}
+
+.iphone-12-body {
+    margin: 10px 0;
+}
+
+
+/* ohine 11 */
+
+.iphone-11 {
+    color: var(--clr-light);
+    padding: 10rem 0 0;
+    max-width: 34ch;
+    border-radius: .5rem;
+    overflow: hidden;
+    transition: all 500ms ease;
+    background-image: url(content/iphones/iphone-11.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.iphone-11:hover,
+.iphone-11:focus-within {
+    transform: scale(1.05);
+}
+
+.iphone-11-content {
+    --padding: 1.5rem;
+    padding: var(--padding);
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(20 0% 0% / .3) 10%,
+        hsl(0 0% 0% / 1)
+    );
+    transform: translateY(65%);
+    transition: all 500ms ease;
+}
+
+.iphone-11:hover .iphone-11-content,
+.iphone-11:focus-within .iphone-11-content {
+    transform: translateY(0);
+    transition-delay: 500ms;
+}
+
+.iphone-11-content > *:not(.iphone-11-title) {
+    opacity: 0;
+    transition: all 500ms linear;
+}
+
+.iphone-11:hover .iphone-11-content > * {
+    opacity: 1;
+    transition-delay: 1000ms;
+}
+
+.iphone-11-title {
+    position: relative;
+    width: max-content;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.iphone-11-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding) * -1);
+    bottom: -2px;
+    width: calc(100% + var(--padding));
+    background: var(--clr-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 500ms ease;
+}
+
+.iphone-11:hover .iphone-11-title::after {
+    transform: scaleX(1);
+}
+
+.iphone-11-body {
+    margin: 10px 0;
+}
+
+/* home */
+
+.container {
+    color: var(--clr-light);
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: url(content/bgs/container-bg.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 70rem;
+}
+
+.container h1 {
+    font-size: 5rem;
+    padding: 20px;
+    z-index: 100;
+    margin-left: 50px;
+}
+
+.container h3 {
+    font-size: 2rem;
+    padding: 10px;
+    z-index: 100;
+    margin-left: 75px;
+}
+
+.home-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-p {
+    height: fit-content;
+    width: 100ch;
+    line-height: 1.6;
+}
+
+.home-p p {
+    font-size: 1.5rem;
+}
+
+/* contact */
+
+html {
+    font-size: 62.5%;
+}
+
+.wrapper-1 {
+    width: 100%;
+    height: 100vh;
+}
+
+.contact-section {
+    padding: 40px 0;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.contact-section h1 {
+    text-align: center;
+    color: var(--clr-light);
+    font-size: 2.2rem;
+}
+
+.border {
+    width: 100px;
+    height: 10px;
+    margin: 20px auto;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.contact-form-text {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 16px 0;
+    border: 0;
+    background: var(--clr-light);
+    padding: 20px 40px;
+    outline: none;
+    color: var(--clr-dark);
+    transition: 0.5s;
+    border-radius: 5px;
+}
+
+.contact-form-text:focus {
+    box-shadow: 0 0 10px 4px #a3a3a3;
+}
+
+textarea.contact-form-text {
+    resize: none;
+    height: 120px;
+}
+
+
+button[type="submit"]{
+    float: right;
+    border: 0;
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    padding: 12px 50px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: var(--clr-accent);
+}
+
+.status {
+    font-size: 1rem;
+    margin: 10px;
+    color: #111;
+}
+
+.status-right {
+    font-size: 1.3rem;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
+    width: fit-content;
+    padding: 10px 40px;
+    background: chartreuse;
+    border-radius: 10px;
+    visibility: hidden;
+}
